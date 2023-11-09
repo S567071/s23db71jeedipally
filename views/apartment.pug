@@ -1,17 +1,18 @@
 extends layout
 
 block content
-  div.container-fluid
   h1= title
-  - let results = [ { Apartment_name: "Parkway", location: "7th street", rent: 800 }, { Apartment_name: "villageO", location: "6th street", rent: 900 },{ Apartment_name: "forest-cove", location: "5th street", rent: 850 } ]
-  
-  div.row 
-    each attr, index in results
-      div.col-sm-2(onclick = `buy(${index})`)
-        h5 name: #{attr.Apartment_name}
-        h5 location: #{attr.location}
-        p rent: #{attr.rent}
+  - let items = results
+
+  .container-fluid
+    .row
+      each attr, index in items
+        .col-sm-2(onclick=`buy(${index})`)
+          p Name: #{attr.Apartment_name}
+          p Location: #{attr.location}
+          p Rent: #{attr.rent}
+
   script.
     function buy(index) {
-      alert(`you purchased item ${index}`);
-    }    
+      alert('You purchased item ' + (index+1));
+    }

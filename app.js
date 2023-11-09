@@ -12,6 +12,7 @@ mongoose.connect(connectionString);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var apartemntRouter = require('./routes/apartment');
 var resourceRouter = require('./routes/resource');
 var Apartment = require("./models/apartment");
 
@@ -30,6 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/resource', resourceRouter);
+app.use('/apartment', apartemntRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -59,7 +62,7 @@ db.once("open", function () {
 async function recreateDB() {
   // Delete everything
   await Apartment.deleteMany();
-  let instance1 = new Apartment({ Apartment_name: "Parkway", location: "7th street", rent: 800 });
+  let instance1 = new Apartment({ Apartment_name: "Xapartments", location: "5th street", rent: 80 });
   instance1.save()
     .then(doc => {
       console.log("First object saved")
@@ -67,7 +70,7 @@ async function recreateDB() {
     .catch(err => {
       console.error(err)
     });
-  let instance2 = new Apartment({ Apartment_name: "villageO", location: "6th street", rent: 900 });
+  let instance2 = new Apartment({ Apartment_name: "Yapartments", location: "4th street", rent: 50 });
   instance2.save()
     .then(doc => {
       console.log("second object saved")
@@ -75,7 +78,7 @@ async function recreateDB() {
     .catch(err => {
       console.error(err)
     });
-  let instance3 = new Apartment({ Apartment_name: "forest-cove", location: "5th street", rent: 850 });
+  let instance3 = new Apartment({ Apartment_name: "Zapartments", location: "3th street", rent: 68 });
   instance3.save()
     .then(doc => {
       console.log("Third object saved")
