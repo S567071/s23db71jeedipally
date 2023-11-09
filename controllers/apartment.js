@@ -1,3 +1,4 @@
+const apartment = require('../models/apartment');
 var Apartment = require('../models/apartment');
 // List of all Costumes
 exports.apartment_list = function(req, res) {
@@ -18,4 +19,16 @@ res.send('NOT IMPLEMENTED: Apartment delete DELETE ' + req.params.id);
 // Handle Costume update form on PUT.
 exports.apartment_update_put = function(req, res) {
 res.send('NOT IMPLEMENTED: Apartment update PUT' + req.params.id);
+};
+
+// List of all Costumes
+exports.apartment_list = async function(req, res) {
+try{
+theApartments = await apartment.find();
+res.send(theApartments);
+}
+catch(err){
+res.status(500);
+res.send(`{"error": ${err}}`);
+}
 };
