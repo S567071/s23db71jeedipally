@@ -1,53 +1,53 @@
 //const apartment = require('../models/apartment');
 var Apartment = require('../models/apartment');
 // List of all Costumes
-exports.apartment_list = function(req, res) {
-res.send('NOT IMPLEMENTED: Apartment list');
+exports.apartment_list = function (req, res) {
+    res.send('NOT IMPLEMENTED: Apartment list');
 };
 // for a specific Costume.
-exports.apartment_detail = function(req, res) {
-res.send('NOT IMPLEMENTED: Apartment detail: ' + req.params.id);
+exports.apartment_detail = function (req, res) {
+    res.send('NOT IMPLEMENTED: Apartment detail: ' + req.params.id);
 };
 // Handle Costume create on POST
 // Handle Costume delete form on DELETE.
-exports.apartment_delete = function(req, res) {
-res.send('NOT IMPLEMENTED: Apartment delete DELETE ' + req.params.id);
+exports.apartment_delete = function (req, res) {
+    res.send('NOT IMPLEMENTED: Apartment delete DELETE ' + req.params.id);
 };
 // Handle Costume update form on PUT.
-exports.apartment_update_put = function(req, res) {
-res.send('NOT IMPLEMENTED: Apartment update PUT' + req.params.id);
+exports.apartment_update_put = function (req, res) {
+    res.send('NOT IMPLEMENTED: Apartment update PUT' + req.params.id);
 };
 
 // List of all Costumes
-exports.apartment_list = async function(req, res) {
-try{
-theApartments = await Apartment.find();
-console.log('theApartments',theApartments);
-res.send(theApartments);
-}
-catch(err){
-res.status(500);
-console.log(`theApartments ${err}}`);
-res.send(`{"error": ${err}}`);
-}
+exports.apartment_list = async function (req, res) {
+    try {
+        theApartments = await Apartment.find();
+        console.log('theApartments', theApartments);
+        res.send(theApartments);
+    }
+    catch (err) {
+        res.status(500);
+        console.log(`theApartments ${err}}`);
+        res.send(`{"error": ${err}}`);
+    }
 };
 
 //VIEWS
 //Handle a show all view
-exports.apartment_view_all_Page = async function(req, res) {
-try{
-theApartments = await Apartment.find();
-console.log('theApartments',theApartments);
-res.render('apartment', { title: 'apartment Search Results', results: theApartments });
-}
-catch(err){
-res.status(500);
-console.log(`theApartments ${err}}`);
-res.send(`{"error": ${err}}`);
-}
+exports.apartment_view_all_Page = async function (req, res) {
+    try {
+        theApartments = await Apartment.find();
+        console.log('theApartments', theApartments);
+        res.render('apartment', { title: 'apartment Search Results', results: theApartments });
+    }
+    catch (err) {
+        res.status(500);
+        console.log(`theApartments ${err}}`);
+        res.send(`{"error": ${err}}`);
+    }
 };
 
-exports.apartment_create_post = async function(req, res) {
+exports.apartment_create_post = async function (req, res) {
     console.log(req.body)
     let document = new Apartment();
     // We are looking for a body, since POST does not have query parameters.
@@ -57,13 +57,24 @@ exports.apartment_create_post = async function(req, res) {
     document.Apartment_name = req.body.Apartment_name;
     document.location = req.body.location;
     document.rent = req.body.rent;
-    try{
-    let result = await document.save();
-    res.send(result);
+    try {
+        let result = await document.save();
+        res.send(result);
     }
-    catch(err){
-    res.status(500);
-    res.send(`{"error": ${err}}`);
+    catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
     }
-    };
-    
+};
+
+// for a specific apartment.
+exports.apartment_detail = async function (req, res) {
+    console.log("detail" + req.params.id)
+    try {
+        result = await Apartment.findById(req.params.id)
+        res.send(result)
+    } catch (error) {
+        res.status(500)
+        res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+};
