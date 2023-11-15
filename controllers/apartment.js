@@ -128,17 +128,30 @@ exports.apartment_view_one_Page = async function (req, res) {
     }
 };
 
-// Handle building the view for creating a costume.
+// Handle building the view for creating a apartment.
 // No body, no in path parameter, no query.
 // Does not need to be async
-exports.apartment_create_Page = function(req, res) {
+exports.apartment_create_Page = function (req, res) {
     console.log("create view")
-    try{
-    res.render('apartmentcreate', { title: 'Apartment Create'});
+    try {
+        res.render('apartmentcreate', { title: 'Apartment Create' });
     }
-    catch(err){
-    res.status(500)
-    res.send(`{'error': '${err}'}`);
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
     }
-    };
-    
+};
+
+// Handle building the view for updating a apartment.
+// query provides the id
+exports.apartment_update_Page = async function (req, res) {
+    console.log("update view for item " + req.query.id)
+    try {
+        let result = await Apartment.findById(req.query.id)
+        res.render('apartmentupdate', { title: 'Apartment Update', toShow: result });
+    }
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};

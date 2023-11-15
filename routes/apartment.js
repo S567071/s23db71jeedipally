@@ -15,4 +15,8 @@ router.get('/detail', apartment_controlers.apartment_view_one_Page);
 /* GET create costume page */
 router.get('/create', apartment_controlers.apartment_create_Page);
 
+/* GET create update page */
+router.get('/update', apartment_controlers.apartment_update_Page);
+
 module.exports = router;
+
