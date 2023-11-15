@@ -91,12 +91,25 @@ exports.apartment_update_put = async function (req, res) {
         // Handle checkbox value
         if (req.body.checkboxsale) toUpdate.sale = true;
         else toUpdate.sale = false;
-        
+
         let result = await toUpdate.save();
         console.log("Sucess " + result)
         res.send(result)
     } catch (err) {
         res.status(500)
         res.send(`{"error": ${err}: Update for id ${req.params.id} failed`);
+    }
+};
+
+// Handle Costume delete on DELETE.
+exports.apartment_delete = async function (req, res) {
+    console.log("delete " + req.params.id)
+    try {
+        result = await Apartment.findByIdAndDelete(req.params.id)
+        console.log("Removed " + result)
+        res.send(result)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": Error deleting ${err}}`);
     }
 };
