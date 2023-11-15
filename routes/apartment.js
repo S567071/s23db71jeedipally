@@ -18,5 +18,8 @@ router.get('/create', apartment_controlers.apartment_create_Page);
 /* GET create update page */
 router.get('/update', apartment_controlers.apartment_update_Page);
 
+/* GET delete apartment page */
+router.get('/delete', apartment_controlers.apartment_delete_Page);
+
 module.exports = router;
 
