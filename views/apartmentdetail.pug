@@ -1,0 +1,20 @@
+extends layout
+block content
+    h1= title
+    - let apartmentid = toShow._id
+    - let Apartment_name = toShow.Apartment_name
+    - let location = toShow.location
+    - let rent = toShow.rent
+    div
+        div.row
+            div(class='apartmentAttr mr-3') Apartment ID is:
+            div #{apartmentid}
+        div.row
+            div(class='apartmentAttr mr-3') Apartment Name is:
+            div #{Apartment_name}
+        div.row
+            div(class='apartmentAttr mr-3') Apartment Location is:
+            div #{location}
+        div.row
+            div(class='apartmentAttr mr-3') Apartment rent is:
+            div #{rent}

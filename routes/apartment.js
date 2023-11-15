@@ -9,4 +9,7 @@ var router = express.Router();
 
 router.get('/', apartment_controlers.apartment_view_all_Page );
 
+/* GET detail costume page */
+router.get('/detail', apartment_controlers.apartment_view_one_Page);
+
 module.exports = router;
