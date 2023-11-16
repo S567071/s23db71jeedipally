@@ -1,20 +1,46 @@
 extends layout
+
 block content
     h1= title
     - let apartmentid = toShow._id
     - let Apartment_name = toShow.Apartment_name
     - let location = toShow.location
     - let rent = toShow.rent
-    div
+
+    div.apartment-details
         div.row
-            div(class='apartmentAttr mr-3') Apartment ID is:
-            div #{apartmentid}
+            div(class='apartmentAttr-label mr-3') Apartment ID:
+            div.apartmentAttr-value #{apartmentid}
         div.row
-            div(class='apartmentAttr mr-3') Apartment Name is:
-            div #{Apartment_name}
+            div(class='apartmentAttr-label mr-3') Apartment Name:
+            div.apartmentAttr-value #{Apartment_name}
         div.row
-            div(class='apartmentAttr mr-3') Apartment Location is:
-            div #{location}
+            div(class='apartmentAttr-label mr-3') Apartment Location:
+            div.apartmentAttr-value #{location}
         div.row
-            div(class='apartmentAttr mr-3') Apartment rent is:
-            div #{rent}
+            div(class='apartmentAttr-label mr-3') Apartment Rent:
+            div.apartmentAttr-value #{rent}
+
+    style.
+        .apartment-details {
+            max-width: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .apartmentAttr-label {
+            font-weight: bold;
+            background-color: palevioletred;
+
+        }
+
+        .apartmentAttr-value {
+            background-color: aquamarine;
+
+        }
+
+        .row {
+            margin-bottom: 10px;
+        }
