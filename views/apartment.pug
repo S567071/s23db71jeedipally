@@ -4,15 +4,26 @@ block content
   h1= title
   - let items = results
 
-  .container-fluid
-    .row
-      each attr, index in items
-        .col-sm-2(onclick=`buy(${index})`)
-          p Name: #{attr.Apartment_name}
-          p Location: #{attr.location}
-          p Rent: #{attr.rent}
+  //- .container-fluid
+  //-   .row
+  //-     each attr, index in items
+  //-       .col-sm-2(onclick=`buy(${index})`)
+  //-         p Name: #{attr.Apartment_name}
+  //-         p Location: #{attr.location}
+  //-         p Rent: #{attr.rent}
+
+  //- script.
+  //-   function buy(index) {
+  //-     alert('You purchased item ' + (index+1));
+  //-   }
+  div(class="container-fluid")
+    div(class="row m-1")
+      each item in items
+        - let destination = `dispatch(\"/apartment/update?id=${item._id}\")`
+        div(class="row-sm-2 m-1") Item #{item.Apartment_name}(#{item.location}) is #{item.rent}
+        button.btn(class="btn-primary ml-1", onclick=destination) Update
 
   script.
-    function buy(index) {
-      alert('You purchased item ' + (index+1));
+    function dispatch(path) {
+      window.location.href = path;
     }
