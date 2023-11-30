@@ -12,7 +12,7 @@ block content
     form(id='ApartmentForm', action=actionid, method="PUT")
         div.form-group
             label.apartmentAttr(for='Apartment_name') Apartment Name  
-            input#Apartment_name(type='text' name='Apartment_name', value=Apartment_name, class='form-control')
+            input#Apartment_name(type='text' minlength = 10, maxlength =50, name='Apartment_name', value=Apartment_name, class='form-control')
         div.form-group
             label.apartmentAttr(for='location') Apartment Location   
             input#location(type='text' name='location', value=location, class='form-control')
