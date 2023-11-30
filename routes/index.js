@@ -11,7 +11,7 @@ var express = require('express');
 var passport = require('passport');
 var router = express.Router();
 var Account = require('../models/account');
-var apartment_controllers = require('../controllers/apartment'); // Assuming you have a controller for costume actions
+
 
 // Middleware to check if the user is authenticated
 function isAuthenticated(req, res, next) {
@@ -62,7 +62,7 @@ router.get('/login', function (req, res) {
 });
 
 router.post('/login', passport.authenticate('local'), function (req, res) {
-  res.redirect('/');s
+  res.redirect('/');
 });
 
 router.get('/logout', function (req, res) {
@@ -77,8 +77,5 @@ router.get('/logout', function (req, res) {
 router.get('/ping', function (req, res) {
   res.status(200).send('pong!');
 });
-
-// Protected route: Update costume page
-router.get('/update', isAuthenticated, apartment_controllers.apartment_update_Page);
 
 module.exports = router;
