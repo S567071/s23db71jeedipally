@@ -18,7 +18,7 @@ block content
             input#location(type='text' name='location', value=location, class='form-control')
         div.form-group
             label.apartmentAttr(for='rent') Apartment Rent 
-            input#rent(type='number' name='rent', value=rent, class='form-control')
+            input#rent(type='number' min = 100, max = 1000, name='rent', value=rent, class='form-control')
         input(type="submit" class="btn btn-primary")
     script.
         document.forms['ApartmentForm'].addEventListener('submit', (event) => {
